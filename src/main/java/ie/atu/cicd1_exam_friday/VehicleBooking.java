@@ -1,14 +1,16 @@
 package ie.atu.cicd1_exam_friday;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Vehicle {
+public class VehicleBooking {
     @NotBlank(message = "Name cannot be blank")
     private String driverName;
 
