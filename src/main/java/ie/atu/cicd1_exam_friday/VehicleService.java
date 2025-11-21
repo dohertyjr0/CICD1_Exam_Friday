@@ -28,11 +28,11 @@ public class VehicleService {
         return vehicleBooking;
     }
 
-    public VehicleBooking updateBooking(VehicleBooking vehicleBooking) {
-        VehicleBooking existing = getVehicle(vehicleBooking.getRegNumber());
-        existing.setDriverName(vehicleBooking.getDriverName());
-        existing.setEmail(vehicleBooking.getEmail());
-        existing.setPassengers(vehicleBooking.getPassengers());
+    public VehicleBooking updateBooking(String regNumber, VehicleBooking updatedVehicleBooking) {
+        VehicleBooking existing = getVehicle(updatedVehicleBooking.getRegNumber());
+        existing.setDriverName(updatedVehicleBooking.getDriverName());
+        existing.setEmail(updatedVehicleBooking.getEmail());
+        existing.setPassengers(updatedVehicleBooking.getPassengers());
         return existing;
     }
 
