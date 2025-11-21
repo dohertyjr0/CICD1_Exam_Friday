@@ -15,7 +15,7 @@ public class VehicleBooking {
     private String driverName;
 
     @NotBlank(message = "Registration number cannot be blank")
-    @Pattern(regexp = "[0-9{2,3}-[A-Z]{1,2}-[0-9]{1,6}")
+    @Pattern(regexp = "[0-9]{2,3}-[A-Z]{1,2}-[0-9]{1,6}")
     private String regNumber;
 
     @Email

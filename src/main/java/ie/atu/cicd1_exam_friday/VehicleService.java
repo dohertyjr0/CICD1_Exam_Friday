@@ -14,13 +14,13 @@ public class VehicleService {
 
     public VehicleBooking getVehicle(String regNumber) {
         return vehicles.stream()
-                .filter(v->v.equals(regNumber))
+                .filter(v->v.getRegNumber().equals(regNumber))
                 .findFirst()
-                .orElseThrow((-> new DuplicateRegNumberException ("Vehicle with reg" + regNumber " already exists")));
+                .orElseThrow(()-> new DuplicateRegNumberException ("Vehicle with reg" + regNumber + " already exists"));
     }
 
     public VehicleBooking saveBooking(VehicleBooking vehicleBooking) {
-        boolean exists = vehicles.stream().anyMatch(v->v.equals(vehicleBooking));
+        boolean exists = vehicles.stream().anyMatch(v->v.getRegNumber().equals(vehicleBooking));
         if (exists){
             throw new IllegalArgumentException("Vehicle booking already exists");
         }
@@ -28,7 +28,7 @@ public class VehicleService {
         return vehicleBooking;
     }
 
-    public VehicleBooking updateBooking(String regNumber, VehicleBooking updatedVehicleBooking) {
+    public VehicleBooking updateBooking(VehicleBooking updatedVehicleBooking) {
         VehicleBooking existing = getVehicle(updatedVehicleBooking.getRegNumber());
         existing.setDriverName(updatedVehicleBooking.getDriverName());
         existing.setEmail(updatedVehicleBooking.getEmail());
@@ -36,8 +36,8 @@ public class VehicleService {
         return existing;
     }
 
-    public void deleteBooking(VehicleBooking vehicleBooking) {
-        VehicleBooking vehicle = getVehicle(vehicleBooking.getRegNumber());
+    public void deleteBooking(String regNumber) {
+        VehicleBooking vehicle = getVehicle(VehicleBooking.getRegNumber());
         vehicles.remove(vehicle);
     }
 }
