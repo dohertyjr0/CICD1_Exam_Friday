@@ -14,20 +14,21 @@ public class VehicleBookingController {
         this.vehicleService = vehicleService;
     }
     @GetMapping("/{regNumber}")
-    public ResponseEntity<List<VehicleBooking>>getVehicles(@PathVariable String regNumber){
-        return ResponseEntity.ok(VehicleService.getVehicle(regNumber));
+    public ResponseEntity<List<VehicleBooking>>getVehicle(@PathVariable String regNumber){
+        return ResponseEntity.ok(vehicleService.getVehicle(regNumber));
     }
     @PostMapping
-    public ResponseEntity<VehicleBooking> saveVehicle(@Valid @RequestBody VehicleBooking vehicleBooking){
-        VehicleBooking saved = VehicleService.saveVehicleBooking(VehicleBooking);
+    public ResponseEntity<VehicleBooking> saveVehicleBooking(@Valid @RequestBody VehicleBooking vehicleBooking){
+        VehicleBooking saved = vehicleService.saveBooking(vehicleBooking);
+        return ResponseEntity.ok(saved);
     }
     @PutMapping("/{regNumber")
-    public ResponseEntity<VehicleBooking> updateBooking(@PathVariable String regNumber, @Valid @RequestBody VehicleBooking vehicleBooking){
-        return ResponseEntity.ok(VehicleService.updateVehicleBooking(regNumber, vehicle));
+    public ResponseEntity<VehicleBooking> updateBooking(@Valid @RequestBody VehicleBooking updatedVehicleBooking){
+        return ResponseEntity.ok(vehicleService.updateBooking(updatedVehicleBooking));
     }
     @DeleteMapping("/{regNumber}")
     public ResponseEntity<Void> deleteVehicle(@PathVariable String regNumber){
-        VehicleService.deleteBooking(regNumber);
+        vehicleService.deleteBooking(regNumber);
         return ResponseEntity.noContent().build();
     }
 }
